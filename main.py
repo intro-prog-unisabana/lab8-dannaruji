@@ -19,3 +19,18 @@ Examples:
   python main.py tasks.txt remove "Do laundry"
   python main.py tasks.txt view
   python main.py tasks.txt add "Call mom" remove "Take out trash" view""")
+    else:
+        file_path = sys.argv[1]
+        tasks = read_todo_file(file_path)
+        i = 2
+
+        while i < len(sys.argv):
+            comando = sys.argv[i]
+            if comando == "add":
+                if i + 1 >= len(sys.argv):
+                    raise IndexError('Task description required for "add".')
+
+                tarea = sys.argv[i + 1]
+                tasks.append(tarea)
+                print(f'Task "{tarea}" added.')
+                i = i + 2
