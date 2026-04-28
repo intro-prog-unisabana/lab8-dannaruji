@@ -34,3 +34,34 @@ Examples:
                 tasks.append(tarea)
                 print(f'Task "{tarea}" added.')
                 i = i + 2
+
+            elif comando == "remove":
+                if i + 1 >= len(sys.argv):
+                    raise IndexError('Task description required for "remove".')
+
+                tarea = sys.argv[i + 1]
+
+                if tarea in tasks:
+                    tasks.remove(tarea)
+                    print(f'Task "{tarea}" removed.')
+                else:
+                    print(f'Task "{tarea}" not found.')
+
+                i = i + 2
+
+            elif comando == "view":
+                print("Tasks:")
+                for t in tasks:
+                    print(t)
+                i = i + 1
+
+            else:
+                raise ValueError("Command not found!")
+
+        write_todo_file(file_path, tasks)
+
+except IndexError as e:
+    print(e)
+
+except ValueError as e:
+    print(e)
